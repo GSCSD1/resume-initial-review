@@ -21,7 +21,15 @@ resume-initial-review/
 
 ## 安装到 Claude Code
 
-将本仓库克隆到 `~/.claude/skills/` 下（或你配置的 skills 目录）：
+**方式一：项目级（只在这个项目里生效，推荐）** —— 克隆到项目根目录的 `.claude/skills/` 下：
+
+```bash
+mkdir -p .claude/skills
+cd .claude/skills
+git clone https://github.com/GSCSD1/resume-initial-review.git
+```
+
+**方式二：个人级（所有项目都能用）** —— 克隆到 `~/.claude/skills/` 下：
 
 ```bash
 mkdir -p ~/.claude/skills
@@ -33,12 +41,17 @@ git clone https://github.com/GSCSD1/resume-initial-review.git
 
 上传或粘贴一份简历（.docx / .pdf / 纯文本），或直接说「帮我看看这份简历」「简历初审」，技能即自动触发。
 
-提取文本优先使用自带脚本：
+提取文本优先使用自带脚本。注意脚本路径要相对于**当前工作目录**，按安装位置区分：
 
 ```bash
-python scripts/read_word.py /path/to/resume.docx
-python scripts/read_word.py /path/to/resume.pdf
+# 项目级安装
+python .claude/skills/resume-initial-review/scripts/read_word.py /path/to/resume.docx
+
+# 个人级安装
+python ~/.claude/skills/resume-initial-review/scripts/read_word.py /path/to/resume.docx
 ```
+
+`.pdf` 同理，只需把文件名后缀换掉。
 
 ## 审查立场
 

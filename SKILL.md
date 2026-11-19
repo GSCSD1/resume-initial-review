@@ -12,10 +12,13 @@ description: 学生求职简历初审/审查技能。当用户需要审查一份
 ### 拿到简历内容
 - 如果用户**粘贴文本**：直接使用该文本。
 - 如果用户给的是 **.docx / .pdf 文件**：先读取内容再审查。
-  - 优先用本 skill 自带的脚本 `scripts/read_word.py` 提取文本（同时支持 .docx 和 .pdf）：
+  - 优先用本 skill 自带的脚本 `scripts/read_word.py` 提取文本（同时支持 .docx 和 .pdf）。
+    注意脚本路径要相对于**当前工作目录**来写：本 skill 安装在项目中时是
+    `.claude/skills/resume-initial-review/scripts/read_word.py`，安装在个人目录时是
+    `~/.claude/skills/resume-initial-review/scripts/read_word.py`。
     ```
-    python scripts/read_word.py /path/to/resume.docx
-    python scripts/read_word.py /path/to/resume.pdf
+    python .claude/skills/resume-initial-review/scripts/read_word.py /path/to/resume.docx
+    python .claude/skills/resume-initial-review/scripts/read_word.py /path/to/resume.pdf
     ```
   - `.pdf` 若脚本读不到（环境缺 PyMuPDF），退回用 Read 工具直接读取。
   - `.docx` 若脚本不可用，退回用 `python-docx` 或 `pandoc -t plain` 提取文本。
